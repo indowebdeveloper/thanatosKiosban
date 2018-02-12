@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # thanatosPos
 Thanatos POS + Integration with Woocommerce
@@ -81,3 +82,7 @@ Thanatos POS + Integration with Woocommerce
 - xsl
 - zip
 - zlib
+=======
+# thanatosPolos
+Polosan
+>>>>>>> 03714335288a39520c6e8631e3c9850347cbebe4
