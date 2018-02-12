@@ -1,0 +1,6 @@
+{
+    "name": "Inventory",
+    "slug": "inventory",
+    "version": "1.0",
+    "description": "INventory module is including product management and warehouse management"
+}

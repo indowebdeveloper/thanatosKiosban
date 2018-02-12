@@ -1,0 +1,232 @@
+<!-- Main Content -->
+<section ng-controller="generalSettings" ng-cloak>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">General Settings</h4>
+                </div>
+                <div class="card-body collapse in">
+                    <div class="card-block card-dashboard">
+                        <div class="card-text">
+                            <p>
+                                Here you can make any change of this application general configurations
+                            </p>
+                        </div>
+                        <form class="form" ng-submit="saveSetting()" name="generalSettings">
+                            <ul class="nav nav-tabs nav-underline">
+                                <li class="nav-item">
+                                    <a class="nav-link active" target="_self" data-toggle="tab" href="#main" aria-expanded="true">
+                                        Main Configuration
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" target="_self" data-toggle="tab" href="#logos" aria-expanded="false">
+                                        Logo Images
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" target="_self" data-toggle="tab" href="#product" aria-expanded="false">
+                                        Product
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" target="_self" data-toggle="tab" href="#socket" aria-expanded="false">
+                                        Socket.IO & Redis Connection
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <div class="tab-content px-1 pt-1">
+                                <div class="tab-pane active" id="main" aria-expanded="true">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="app-name">Application Name</label>
+                                                    <input type="text" class="form-control" placeholder="Full Name" name="name" ng-model="generalSettings.application_name" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="currency">System Currency</label>
+                                                    <select name='currency' 
+                                                    ng-model="generalSettings.currency" 
+                                                    class="form-control" 
+                                                    ui-select2
+                                                    data-placeholder="Select Currency"
+                                                    >
+                                                        <option value=""></option>
+                                                        <option ng-repeat="cr in currency" value="{{cr.symbol}}">{{cr.label}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="dateFormat">Date Format</label>
+                                                    <select name='dateFormat' ng-model="generalSettings.dateFormat" class="form-control select2" ng-options="format as format for format in dateFormat ">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="timezone">System Timezone</label>
+                                                    <select name='timezone' ng-model="generalSettings.timezone" class="form-control select2" ng-options="tm.value as tm.name for tm in timezone">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Payment Instruction</label>
+                                                    <textarea  class="form-control" ng-model="generalSettings.payment_instruction"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="product">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="app-name">Product Tax</label>
+                                                    <select class="form-control" name='productTax' ng-model="generalSettings.productTax">
+                                                  <option value="yes">Yes</option>
+                                                  <option value="no">No</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="app-name">Product Expiry</label>
+                                                    <select class="form-control" name='productExpiry' ng-model="generalSettings.productExpiry">
+                                                  <option value="yes">Yes</option>
+                                                  <option value="no">No</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="app-name">Product Variant</label>
+                                                    <select class="form-control" name='productVariant' ng-model="generalSettings.productVariant">
+                                                  <option value="yes">Yes</option>
+                                                  <option value="no">No</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="app-name">Default Barcode Symbology</label>
+                                                    <select class="form-control select2" name='productBarcode' ng-model="generalSettings.productBarcode" ng-options="barcode as barcode for barcode in productBarcode"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="logos">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for='logoLight'>Logo Light</label>
+                                                    <input type="file" class="form-control" name="logoLight" image-with-preview ng-model="generalSettings.logo_light" accept="image/jpeg,image/png">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <span class="error" ng-show="generalSettings.logoLight.$error.image">
+                                              Not a JPEG or a PNG!
+                                          </span>
+                                                    <img ng-show="generalSettings.logo_light.src" ng-src="{{generalSettings.logo_light.src}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for='logoDark'>Logo Dark</label>
+                                                    <input type="file" class="form-control" name="logoDark" image-with-preview ng-model="generalSettings.logo_dark" accept="image/jpeg,image/png">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <span class="error" ng-show="generalSettings.logoDark.$error.image">
+                                              Not a JPEG or a PNG!
+                                          </span>
+                                                    <img ng-show="generalSettings.logo_dark.src" ng-src="{{generalSettings.logo_dark.src}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for='logoDarkSmall'>Logo Dark Small</label>
+                                                    <input type="file" class="form-control" name="logoDarkSmall" image-with-preview ng-model="generalSettings.logo_dark_small" accept="image/jpeg,image/png">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <span class="error" ng-show="generalSettings.logoDarkSmall.$error.image">
+                                              Not a JPEG or a PNG!
+                                          </span>
+                                                    <img ng-show="generalSettings.logo_dark_small.src" ng-src="{{generalSettings.logo_dark_small.src}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="socket">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="app-name">Socket.IO Host</label>
+                                                    <input type="text" class="form-control" name="socketioHost" ng-model="generalSettings.socketioHost" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="app-name">Socket.IO PORT</label>
+                                                    <input type="text" class="form-control" name="socketioPort" ng-model="generalSettings.socketioPort" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="alert bg-info alert-icon-left alert-dismissible fade in mb-2" role="alert">
+                                                        <strong>Redis Connection :</strong> you can directly edit redis configuration on your <a href="#" class="alert-link">.env</a> file.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <a href="/#!/users" class="btn btn-warning mr-1">
+                                    <i class="icon-cross2"></i> Cancel
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+          									<i class="icon-check2"></i> Save
+          								</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Main Content -->
+<!-- INCLUDE JS -->
+<script src="/app/controller/settingsManagement/generalSettings.js" type="text/javascript"></script>
+<!-- END INCLUDE JS -->

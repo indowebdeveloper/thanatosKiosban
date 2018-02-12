@@ -1,0 +1,88 @@
+<!-- style -->
+<style>
+    #permissions-list {
+        margin-top: 20px;
+        height: 300px;
+        overflow: hidden;
+        overflow-y: scroll;
+        list-style: none;
+        padding: 0px;
+    }
+
+    #permissions-list li {
+        padding: 10px 0px;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+    #permissions-list li input {
+        display: inline-block!important;
+        width: auto;
+        float: right;
+        margin-right: 20px;
+        margin-top: 10px;
+    }
+</style>
+<!-- Main Content -->
+<section ng-controller="editRole" class="hideTillLoaded">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Modify Role</h4>
+                </div>
+                <div class="card-body collapse in">
+                    <div class="card-block card-dashboard">
+                        <div class="card-text">
+                            <p>
+                                You can modify the role data and set the permission here
+                            </p>
+                        </div>
+                        <form class="form" ng-submit="saveRole()">
+                            <input type="hidden" ng-model="roleData.id" />
+                            <div class="form-body">
+                                <h4 class="form-section"><i class="icon-head"></i> Role Information</h4>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label>Role Name</label>
+                                            <input type="text" class="form-control" placeholder="Role Name" name="name" ng-model="roleData.name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Role Description</label>
+                                            <textarea class="form-control" placeholder="Specify the role description here" name='description' ng-model='roleData.description' required rows="14"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" ng-if="roleData.id > 1">
+                                        <div class="form-group">
+                                            <label>Permissions</label>
+                                            <input ng-model="filterPermission" type="text" class="form-control" placeholder="Please use this for filtering permission">
+                                            <ul id='permissions-list'>
+                                                <li ng-repeat="permission in permissions | filter:filterPermission">
+                                                    {{permission.name}} <input type="checkbox" class="form-control" data-checklist-model="roleData.permission" data-checklist-value="permission.id">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <a href="/#!/roles" class="btn btn-warning mr-1">
+                                    <i class="icon-cross2"></i> Cancel
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+          									<i class="icon-check2"></i> Save
+          								</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Main Content -->
+<!-- INCLUDE JS -->
+<script src="/app/controller/roleManagement/roleEdit.js" type="text/javascript"></script>
+<!-- END INCLUDE JS -->

@@ -1,0 +1,119 @@
+<!-- style -->
+<!-- Main Content -->
+<section ng-controller="customerEdit">
+    <div class="row">
+        <!-- current section info -->
+        <div class="col-xl-12 col-lg-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="p-2 text-xs-center bg-cyan media-left media-middle">
+                            <i class="icon-android-contacts font-large-2 white"></i>
+                        </div>
+                        <div class="p-2 media-body">
+                            <h4>Edit Customer</h4>
+                            <h5 class="text-bold-400">
+                                You can edit customer here, please fill all required fields below
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end -->        
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-body collapse in">
+                    <div class="card-block card-dashboard">
+                        <form class="form" ng-submit="saveCustomer()">
+                            <div class="form-body">
+                                <div class="row">
+                                    <!-- main product information -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Customer Name</label>
+                                            <input type="text" 
+                                            class="form-control" placeholder="Customer Name" 
+                                            name="name" ng-model="customerData.name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Customer Email</label>
+                                            <input type="email" 
+                                            class="form-control" placeholder="Customer Email" 
+                                            name="name" ng-model="customerData.email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Customer Phone</label>
+                                            <input type="text" 
+                                            class="form-control" placeholder="+62 123123" 
+                                            name="name" ng-model="customerData.phone" required>
+                                        </div>
+                                        <div class="form-group">
+                                                <label>Customer Type</label>
+                                                <select class="form-control" name="type" ng-model="customerData.type"
+                                                ng-options="type.id as type.name for type in types">
+                                                   
+                                                </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" ng-if="customerData.type!=0" >
+                                        <div class="form-group">
+                                            <label>Company Type</label>
+                                            <select class="form-control select2" 
+                                            name='company_type' 
+                                            ng-model="customerData.company_type" 
+                                            ng-options="ct.id as ct.name for ct in allCompanyType"
+                                            ui-select2
+                                            ng-required="true"
+                                            data-placeholder="Please Select">
+                                            <option value=""></option> 
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Company Name</label>
+                                            <input type="text" 
+                                            class="form-control" placeholder="Company Name" 
+                                            name="name" ng-model="customerData.company_name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Company Email</label>
+                                            <input type="email" 
+                                            class="form-control" placeholder="Company Email" 
+                                            name="name" ng-model="customerData.company_email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Company Phone</label>
+                                            <input type="text" 
+                                            class="form-control" placeholder="+62 123123" 
+                                            name="name" ng-model="customerData.company_phone" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Company Address</label>
+                                            <textarea class="form-control" ng-model="customerData.company_address"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <a href="/{{admin_url}}#!/customers" class="btn btn-warning mr-1">
+                                    <i class="icon-cross2"></i> Cancel
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+          									<i class="icon-check2"></i> Save
+          								</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Main Content -->
+<!-- INCLUDE JS -->
+<script src="/app/controller/customerManagement/customerEdit.js" type="text/javascript"></script>
+<!-- END INCLUDE JS -->

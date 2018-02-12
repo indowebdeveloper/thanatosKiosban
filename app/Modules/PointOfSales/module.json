@@ -1,0 +1,6 @@
+{
+    "name": "PointOfSales",
+    "slug": "point-of-sales",
+    "version": "1.0",
+    "description": "Module Point Of Sales, containing all module that requires for sales"
+}

@@ -1,0 +1,153 @@
+<!-- style -->
+<style>
+        #categories-list {
+            margin-top: 20px;
+            height: 300px;
+            overflow: hidden;
+            overflow-y: scroll;
+            list-style: none;
+            padding: 0px;
+        }
+    
+        #categories-list li {
+            padding: 10px 0px;
+            border-bottom: 1px solid #e6e6e6;
+        }
+    
+        #categories-list li input {
+            display: inline-block!important;
+            width: auto;
+            float: right;
+            margin-right: 20px;
+            margin-top: 10px;
+        }
+    </style>
+    <!-- Main Content -->
+    <section ng-controller="websiteEdit">
+        <div class="row">
+            <!-- current section info -->
+            <div class="col-xl-12 col-lg-12 col-xs-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="media">
+                            <div class="p-2 text-xs-center bg-cyan media-left media-middle">
+                                <i class="icon-briefcase font-large-2 white"></i>
+                            </div>
+                            <div class="p-2 media-body">
+                                <h4>Create Website</h4>
+                                <h5 class="text-bold-400">
+                                    You can create website Here, please fill all mandatory fields before you submit
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end -->        
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                   <div class="card-body collapse in">
+                        <div class="card-block card-dashboard">
+                           
+                            <form class="form" ng-submit="saveWebsite()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Name</label>
+                                                <input type="text" 
+                                                class="form-control" placeholder="Website Name"
+                                                 name="name" ng-model="website.name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="text" 
+                                                class="form-control" placeholder="Website Email Address"
+                                                 name="name" ng-model="website.email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Phone</label>
+                                                <input type="text" 
+                                                class="form-control" placeholder="Website Phone"
+                                                 name="name" ng-model="website.phone" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Website Adress</label>
+                                                <input type="text" 
+                                                class="form-control" placeholder="https://ex.com"
+                                                 name="name" ng-model="website.website" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Slogan</label>
+                                                <input type="text" 
+                                                class="form-control" placeholder="The Website Slogan here"
+                                                 name="name" ng-model="website.slogan" >
+                                            </div>
+                                            <div class="form-group">
+                                                    <label>Mail Inboxes (Sales)</label>
+                                                    <tags-input  enable-editing-last-tag="true" min-tags="1" add-on-space="true" use-strings="true"  ng-model="website.sales_inboxes" placeholder="Add multiple email address, separate using tab"></tags-input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Mail Inboxes (Finance)</label>
+                                                    <tags-input  enable-editing-last-tag="true" min-tags="1" add-on-space="true" use-strings="true"  ng-model="website.finance_inboxes" placeholder="Add multiple email address, separate using tab"></tags-input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Mail Inboxes (Purchasing)</label>
+                                                    <tags-input  enable-editing-last-tag="true" min-tags="1" add-on-space="true" use-strings="true"  ng-model="website.purchasing_inboxes" placeholder="Add multiple email address, separate using tab"></tags-input>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                                <div class="form-group" ng-show="website.logo.src">
+                                                        <span class="error" ng-show="website.logo.$error.image">
+                                                            Not a JPEG or a PNG!
+                                                        </span>
+                                                        <img ng-show="website.logo.src" 
+                                                        ng-src="{{website.logo.src}}" style="width:100%;" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for='logoLight'>Website Logo</label>
+                                                        <input type="file" 
+                                                        class="form-control" 
+                                                        name="logoLight" 
+                                                        image-with-preview 
+                                                        ng-model="website.logo" 
+                                                        accept="image/jpeg,image/png">
+                                                    </div>
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <textarea class="form-control" 
+                                                placeholder="Specify the website address here" 
+                                                ng-model='website.address' rows="14"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Mail Inboxes (Master)</label>
+                                                <tags-input  enable-editing-last-tag="true" min-tags="1" add-on-space="true" use-strings="true"  ng-model="website.mail_inboxes" placeholder="Add multiple email address, separate using tab"></tags-input>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="form-actions">
+                                    <a href="/{{admin_url}}#!/websites" class="btn btn-warning mr-1">
+                                        <i class="icon-cross2"></i> Cancel
+                                    </a>
+                                    <button type="submit" class="btn btn-primary" ng-disabled="!website.mail_inboxes">
+                                                  <i class="icon-check2"></i> Save
+                                              </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- End Main Content -->
+    <!-- INCLUDE JS -->
+    <script src="/app/controller/websiteManagement/edit.js" type="text/javascript"></script>
+    <!-- END INCLUDE JS -->
+    

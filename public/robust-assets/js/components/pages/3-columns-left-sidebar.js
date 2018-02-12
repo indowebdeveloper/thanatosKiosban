@@ -1,0 +1,1 @@
+$(document).ready(function(){var a={start:[30,70],behaviour:"drag",connect:!0,range:{min:20,max:80}},b=document.getElementById("small-slider");noUiSlider.create(b,a),$.fn.raty.defaults.path="robust-assets/images/raty/",$("#score-rating").raty({score:3}),$(".sidebar-sticky").sticky()});

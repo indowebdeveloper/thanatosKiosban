@@ -1,0 +1,16 @@
+{
+  "name": "thanatos_realtime",
+  "version": "1.0.0",
+  "description": "Thanatos realtime server",
+  "main": "socket.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "INDOWEBDEVELOPER",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "redis": "^2.7.1",
+    "socket.io": "^1.7.3"
+  }
+}

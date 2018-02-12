@@ -1,0 +1,83 @@
+<!-- style -->
+<style>
+        #categories-list {
+            margin-top: 20px;
+            height: 300px;
+            overflow: hidden;
+            overflow-y: scroll;
+            list-style: none;
+            padding: 0px;
+        }
+    
+        #categories-list li {
+            padding: 10px 0px;
+            border-bottom: 1px solid #e6e6e6;
+        }
+    
+        #categories-list li input {
+            display: inline-block!important;
+            width: auto;
+            float: right;
+            margin-right: 20px;
+            margin-top: 10px;
+        }
+    </style>
+    <!-- Main Content -->
+    <section ng-controller="ctEdit">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Create Company Type</h4>
+                    </div>
+                    <div class="card-body collapse in">
+                        <div class="card-block card-dashboard">
+                            <div class="card-text">
+                                <p>
+                                    You can create company type here. Company type are used for classify the customer if its a company ( not personal )
+                                </p>
+                            </div>
+                            <form class="form" ng-submit="saveType()">
+                                <div class="form-body">
+                                    <h4 class="form-section"><i class="icon-flame"></i> Company Type Information</h4>
+                                    <input type="hidden" ng-model="cT.id">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label>Name</label>
+                                                <input type="text" 
+                                                class="form-control" placeholder="Company Type Name"
+                                                 name="name" ng-model="cT.name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <textarea class="form-control" placeholder="Specify the description here" 
+                                                name='description' 
+                                                required ng-model='cT.description' rows="14"></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+    
+                                <div class="form-actions">
+                                    <a href="/{{admin_url}}#!/company_types" class="btn btn-warning mr-1">
+                                        <i class="icon-cross2"></i> Cancel
+                                    </a>
+                                    <button type="submit" class="btn btn-primary">
+                                                  <i class="icon-check2"></i> Save
+                                              </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- End Main Content -->
+    <!-- INCLUDE JS -->
+    <script src="/app/controller/customerManagement/ctEdit.js" type="text/javascript"></script>
+    <!-- END INCLUDE JS -->
+    

@@ -1,0 +1,3 @@
+PHP module
+- GD Image
+- Ext Info ( php_fileinfo )
